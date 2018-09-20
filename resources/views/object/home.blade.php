@@ -87,8 +87,23 @@
 <script>
       $(document).ready(function(){
         $('input:checkbox').change(function(){
-            var checked = $(this).is(':checked');     
-              if(checked && this.id!= 0 && this.value!= 0) {         
+            var checked = $(this).is(':checked'); 
+            
+              if ($('[value = '+this.value+']:checked').size()==
+                                     $('[value = '+this.value+'][id != 0]').size() && this.id != 0){
+                       $('[value='+this.value+'][id = 0]').prop("checked", true);
+                          } else if (this.id != 0) {
+                       $('[value='+this.value+'][id = 0]').removeAttr("checked");
+                }
+                
+               if ($('[id = '+this.id+']:checked').size()==
+                                     $('[id = '+this.id+'][value != 0]').size() && this.value != 0){
+                       $('[id='+this.id+'][value = 0]').prop("checked", true);
+                          } else if (this.value != 0) {
+                       $('[id='+this.id+'][value = 0]').removeAttr("checked");
+                }
+                
+              if (checked && this.id!= 0 && this.value!= 0) {         
                 var row = this.id;
                 var column = this.value;
                     $.ajax({
@@ -99,19 +114,29 @@
                     });
                }
                
-               else if (this.id!=0  && this.value!=0)  {  
+               else if (this.id != 0  && this.value != 0)  {  
                      var row = this.id;
                      var column = this.value;
                      $.ajax({
                          url: "{{ route('delete') }}",
                          type: 'POST',
                          data: {row : row , column : column }
-                         
-                    
+                  
                     });
-                }      
+                }
+  
         });
     });
+    
+    $(document).ready(function(){
+    if ($('[value = '+this.value+']:checked').size()==
+                                     $('[value = '+this.value+'][id != 0]').size()){
+                        //alert($('[value = '+this.value+'][id!=0]).size());
+                       $('[value='+this.value+'][id = 0]').prop("checked", true);
+                          } else {
+                       $('[value='+this.value+'][id = 0]').removeAttr("checked");
+                }
+            });
     
     $(document).ready(function(){
         $('[id = 0][value = 0]').change(function(){

@@ -128,15 +128,7 @@
         });
     });
     
-    $(document).ready(function(){
-    if ($('[value = '+this.value+']:checked').size()==
-                                     $('[value = '+this.value+'][id != 0]').size()){
-                        //alert($('[value = '+this.value+'][id!=0]).size());
-                       $('[value='+this.value+'][id = 0]').prop("checked", true);
-                          } else {
-                       $('[value='+this.value+'][id = 0]').removeAttr("checked");
-                }
-            });
+    
     
     $(document).ready(function(){
         $('[id = 0][value = 0]').change(function(){

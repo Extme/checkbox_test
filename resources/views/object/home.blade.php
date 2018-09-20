@@ -42,9 +42,8 @@
                                    id='<?php print $box->checkbox_row;?>' 
                                    value = '<?php print $box->checkbox_col;?>' checked /></td>
                                    <?php $i++;?>
-                  
+           
                   @endif
-                   
                     @if($i == $columns)
                     <tr></tr>
                     <?php $i=0; $y=1?>
@@ -89,21 +88,17 @@
         $('input:checkbox').change(function(){
             var checked = $(this).is(':checked'); 
             
-              if ($('[value = '+this.value+']:checked').size()==
+               if ($('[value = '+this.value+']:checked').size()== /*проверяем колонку на запонение*/
                                      $('[value = '+this.value+'][id != 0]').size() && this.id != 0){
-                       $('[value='+this.value+'][id = 0]').prop("checked", true);
-                          } else if (this.id != 0) {
-                       $('[value='+this.value+'][id = 0]').removeAttr("checked");
-                }
+                   $('[value='+this.value+'][id = 0]').prop("checked", true);
+                } 
                 
-               if ($('[id = '+this.id+']:checked').size()==
+               if ($('[id = '+this.id+']:checked').size()== /*проверяем ряд на запонение*/
                                      $('[id = '+this.id+'][value != 0]').size() && this.value != 0){
                        $('[id='+this.id+'][value = 0]').prop("checked", true);
-                          } else if (this.value != 0) {
-                       $('[id='+this.id+'][value = 0]').removeAttr("checked");
-                }
+                } 
                 
-              if (checked && this.id!= 0 && this.value!= 0) {         
+               if (checked && this.id!= 0 && this.value!= 0) {  /*отмечаем в базе чекбокс из тела таблицы*/       
                 var row = this.id;
                 var column = this.value;
                     $.ajax({
@@ -112,17 +107,18 @@
                         data: {row : row , column : column }
                         
                     });
-               }
-               
-               else if (this.id != 0  && this.value != 0)  {  
+               }  else if (this.id != 0  && this.value != 0)  {  /*снимаем флажок в базе*/
                      var row = this.id;
                      var column = this.value;
+                     $('[value='+this.value+'][id = 0]').removeAttr("checked");
+                     $('[id='+this.id+'][value = 0]').removeAttr("checked");
                      $.ajax({
                          url: "{{ route('delete') }}",
                          type: 'POST',
                          data: {row : row , column : column }
                   
                     });
+                    
                 }
   
         });

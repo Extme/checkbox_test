@@ -15,7 +15,7 @@
         <!-- Styles -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">         
+                
         <style>
                 body {
                     font-family: 'Lato';
@@ -24,20 +24,10 @@
                     margin-right: 6px;
                 }
                 
-                .dataTables_wrapper .dataTables_filter {
-                 float: right;
-                 text-align: right;
-                 margin-right: 5em;
-                }
-                
-                .dataTables_paginate {
-                    margin-right: 10em;
-                }
        </style>
             
             
-            <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            
                       
         </head>
         <body id="app-layout">

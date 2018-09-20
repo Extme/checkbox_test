@@ -15,9 +15,14 @@
     //return view('welcome');
 //});
 Route::get('/','ObjectController@index');
-Route::get('/tree','ObjectController@showTree');
-Route::get('/getData','ObjectController@getHead')->name('getHead');
-Route::post('/showSubordinates','ObjectController@showSubordinates')->name('showSubordinates');
+Route::POST('/insert','ObjectController@insert')->name('insert');
+Route::POST('/delete','ObjectController@delete')->name('delete');
+Route::POST('/selectRow','ObjectController@selectRow')->name('selectRow');
+Route::POST('/selectColumn','ObjectController@selectColumn')->name('selectColumn');
+Route::POST('/deSelectRow','ObjectController@deSelectRow')->name('deSelectRow');
+Route::POST('/deSelectColumn','ObjectController@deSelectColumn')->name('deSelectColumn');
+Route::POST('/selectAll','ObjectController@selectAll')->name('selectAll');
+Route::POST('/deSelectAll','ObjectController@deSelectAll')->name('deSelectAll');
 
 
 //link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/

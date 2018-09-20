@@ -1,21 +1,49 @@
 <?php include(app_path().'/includes/config.php'); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
-
-
- <?php $i=0;?>
- @foreach ($boxes as $box)
-      @if ($box->check==true) 
-        <input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' value = '<?php print $box->checkbox_col;?>' checked />   
-      @else <input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' value = '<?php print $box->checkbox_col;?>' unchecked />
-      @endif
-    <?php $i++;?>
-    @if($i == $columns)
-         </br>
+<html>
+    <head>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+          <style type="text/css">
+           TH {
+           border-bottom: 1px solid #000; /* Линия под верхним заголовком */
+           }
+          </style>
+          
+    </head>
+    
+    
+    <body>
+       <table>
          <?php $i=0;?>
-    @endif
- @endforeach
- 
- 
+         <?php $y=0;?>
+         @foreach ($boxes as $box)
+               @if ($box->check==true)
+                  @if ($y==0)
+                  
+                  <th><input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' value = '<?php print $box->checkbox_col;?>' checked /></th>
+                  
+                  @else <td><input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' 
+                                   value = '<?php print $box->checkbox_col;?>' checked /></td>
+                  @endif
+               @endif
+               @if ($y==0) <th><input name ="checkbox" type="checkbox" 
+                                       id='<?php print $box->checkbox_row;?>' 
+                                       value = '<?php print $box->checkbox_col;?>' 
+                                       unchecked /></th>
+               @else <td><input name ="checkbox" type="checkbox" 
+                                       id='<?php print $box->checkbox_row;?>' 
+                                       value = '<?php print $box->checkbox_col;?>' 
+                                       unchecked /></td>
+               @endif
+               <?php $i++;?>
+               @if($i == $columns)
+               <tr></tr>
+                    <?php $i=0; $y=1?>
+               @endif
+         @endforeach
+      </table>
+   </body>
+   
+</html>
  
 
 <script>

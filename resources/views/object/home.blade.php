@@ -6,6 +6,10 @@
            TH {
            border-bottom: 1px solid #000; /* Линия под верхним заголовком */
            }
+           
+           .vl {
+           border-right: 1px solid #000; /* Линия справа */
+           }
           </style>
           
     </head>
@@ -17,24 +21,58 @@
          <?php $y=0;?>
          @foreach ($boxes as $box)
                @if ($box->check==true)
-                  @if ($y==0)
+                  @if ($y==0 && $i==0)
+                  <th class = "vl"><input name ="checkbox" type="checkbox" 
+                                          id='<?php print $box->checkbox_row;?>' 
+                                          value = '<?php print $box->checkbox_col;?>' 
+                                          checked /></th>
+                                          <?php $i++;?>
+                  @elseif ($y==0) <th><input name ="checkbox" type="checkbox" 
+                                       id='<?php print $box->checkbox_row;?>' 
+                                       value = '<?php print $box->checkbox_col;?>' 
+                                       checked /></th>
+                                       <?php $i++;?>
                   
-                  <th><input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' value = '<?php print $box->checkbox_col;?>' checked /></th>
-                  
-                  @else <td><input name ="checkbox" type="checkbox" id='<?php print $box->checkbox_row;?>' 
+                  @elseif ($i==0) <td class = "vl"><input name ="checkbox" type="checkbox" 
+                                   id='<?php print $box->checkbox_row;?>' 
                                    value = '<?php print $box->checkbox_col;?>' checked /></td>
+                                   <?php $i++;?>
+                  
+                  @else <td><input name ="checkbox" type="checkbox" 
+                                   id='<?php print $box->checkbox_row;?>' 
+                                   value = '<?php print $box->checkbox_col;?>' checked /></td>
+                                   <?php $i++;?>
+                  
                   @endif
+                   
+                    @if($i == $columns)
+                    <tr></tr>
+                    <?php $i=0; $y=1?>
+                    @endif
+               @continue  
                @endif
-               @if ($y==0) <th><input name ="checkbox" type="checkbox" 
+               
+               @if ($y==0 && $i==0) <th class = "vl"><input name ="checkbox" type="checkbox" 
                                        id='<?php print $box->checkbox_row;?>' 
                                        value = '<?php print $box->checkbox_col;?>' 
                                        unchecked /></th>
+                                       <?php $i++;?>
+               @elseif ($y==0) <th><input name ="checkbox" type="checkbox" 
+                                       id='<?php print $box->checkbox_row;?>' 
+                                       value = '<?php print $box->checkbox_col;?>' 
+                                       unchecked /></th>
+                                       <?php $i++;?>
+               @elseif ($i==0) <td class = "vl"><input name ="checkbox" type="checkbox" 
+                                       id='<?php print $box->checkbox_row;?>' 
+                                       value = '<?php print $box->checkbox_col;?>' 
+                                       unchecked /></th>
+                                       <?php $i++;?>
                @else <td><input name ="checkbox" type="checkbox" 
                                        id='<?php print $box->checkbox_row;?>' 
                                        value = '<?php print $box->checkbox_col;?>' 
                                        unchecked /></td>
+                                       <?php $i++;?>
                @endif
-               <?php $i++;?>
                @if($i == $columns)
                <tr></tr>
                     <?php $i=0; $y=1?>
